@@ -1,0 +1,128 @@
+REATE (Poesia:GeneroLiterario {nombre:'Poesia'})
+CREATE (Novela:GeneroLiterario {nombre:'Novela'})
+CREATE (Dramaturgia:GeneroLiterario {nombre:'Dramaturgia'})
+CREATE (Cuento:GeneroLiterario{nombre:'Cuento'})
+
+CREATE (Terror:Clase {nombre:'Terror'})
+CREATE (Tragedia:Clase {nombre:'Tragedia'})
+CREATE (Ficcion:Clase {nombre:'Ficcion'})
+CREATE (Infantil:Clase {nombre:'Infantil'})
+CREATE (Fantasia:Clase {nombre:'Fantasia'})
+
+CREATE(StephenK:Escritor {nombre:'Stephen King'})
+CREATE(EdgarAP:Escritor {nombre:'Edgar Allan Poe'})
+CREATE(JulioV:Escritor {nombre:'Julio Verne'})
+CREATE(HGWells:Escritor {nombre:'H.G Wells'})
+CREATE(WilliamS:Escritor {nombre:'William Shakespeare'})
+CREATE(DRSeuss:Escritor {nombre:'Dr.Seuss'})
+CREATE(JRRT:Escritor {nombre:'J.R.R Tolkien'})
+
+CREATE(IT:Obra {nombre:'IT'})
+CREATE(Carry:Obra {nombre:'Carry'})
+CREATE(Shining:Obra {nombre:'The Shining'})
+CREATE(Pit:Obra {nombre:'The Pit and the Pendulum'})
+CREATE(Cat:Obra {nombre:'The Black Cat'})
+CREATE(Heart:Obra {nombre:'The Tell Tale Heart'})
+CREATE(Raven:Obra {nombre:'The Raven'})
+CREATE(Autour:Obra {nombre:'Autour de la Lune'})
+CREATE(TimeMachine:Obra {nombre:'The Time Machine'})
+CREATE(RyJ:Obra{nombre:'Romeo y Juliet'})
+CREATE(Otelo:Obra{nombre:'Otelo'})
+CREATE(Hamlet:Obra{nombre:'The Tragedy of Hamlet'})
+CREATE(Cathat:Obra{nombre:'The Cat in the Hat'})
+CREATE(Grinch:Obra{nombre:'How the Grinch Stole Christmas!'})
+CREATE(Hobbit:Obra{nombre:'The Hobbit'})
+CREATE(TLOR:Obra{nombre:'The Lord of the Rings'})
+
+CREATE 
+(StephenK)-[:Escribio]->(IT)
+CREATE
+(StephenK)-[:Escribio]->(Carry)
+CREATE
+(StephenK)-[:Escribio]->(Shining)
+CREATE
+(EdgarAP)-[:Escribio]->(Pit)
+CREATE
+(EdgarAP)-[:Escribio]->(Cat)
+CREATE
+(EdgarAP)-[:Escribio]->(Heart)
+CREATE
+(EdgarAP)-[:Escribio]->(Raven)
+CREATE
+(JulioV)-[:Escribio]->(Autour)
+CREATE
+(HGWells)-[:Escribio]->(TimeMachine)
+CREATE
+(WilliamS)-[:Escribio]->(RyJ)
+CREATE
+(WilliamS)-[:Escribio]->(Otelo)
+CREATE
+(WilliamS)-[:Escribio]->(Hamlet)
+CREATE
+(DRSeuss)-[:Escribio]->(Cathat)
+CREATE
+(DRSeuss)-[:Escribio]->(Grinch)
+CREATE
+(JRRT)-[:Escribio]->(Hobbit)
+CREATE
+(JRRT)-[:Escribio]->(TLOR)
+CREATE
+(IT)-[:es_una]->(Novela) 
+CREATE
+(IT)-[:es_de]->(Terror)
+CREATE
+(Carry)-[:es_una]->(Novela) 
+CREATE
+(Carry)-[:es_de]->(Terror)
+CREATE
+(Shining)-[:es_una]->(Novela) 
+CREATE
+(Shining)-[:es_de]->(Terror)
+CREATE
+(Pit)-[:es_una]->(Cuento) 
+CREATE
+(Pit)-[:es_de]->(Terror) 
+CREATE
+(Cat)-[:es_una]->(Cuento) 
+CREATE
+(Cat)-[:es_de]->(Terror) 
+CREATE
+(Heart)-[:es_una]->(Cuento) 
+CREATE
+(Heart)-[:es_de]->(Terror) 
+CREATE
+(Raven)-[:es_una]->(Poesia) 
+CREATE
+(Raven)-[:es_de]->(Terror) 
+CREATE
+(Autour)-[:es_una]->(Novela) 
+CREATE
+(Autour)-[:es_de]->(Ficcion) 
+CREATE
+(TimeMachine)-[:es_una]->(Novela) 
+CREATE
+(TimeMachine)-[:es_de]->(Ficcion) 
+CREATE
+(RyJ)-[:es_una]->(Dramaturgia) 
+CREATE
+(RyJ)-[:es_de]->(Tragedia) 
+CREATE
+(Hamlet)-[:es_una]->(Dramaturgia) 
+CREATE
+(Hamlet)-[:es_de]->(Tragedia) 
+CREATE
+(Cathat)-[:es_una]->(Cuento) 
+CREATE
+(Cathat)-[:es_de]->(Infantil)
+CREATE 
+(Grinch)-[:es_una]->(Cuento) 
+CREATE
+(Grinch)-[:es_de]->(Infantil) 
+CREATE
+(Hobbit)-[:es_una]->(Novela) 
+CREATE
+(Hobbit)-[:es_de]->(Fantasia) 
+CREATE
+(TLOR)-[:es_una]->(Novela) 
+CREATE
+(TLOR)-[:es_de]->(Fantasia)
