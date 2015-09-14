@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -27,6 +28,7 @@ public class agregar extends JFrame implements Funciones {
 	public JLabel lbldato;
 	public JTextField txtdato;
 	public JButton btnAgregar;
+	public int actual;//Genero,autor,tipo...Conocer el estado actual
 	private int opcion;
 
 	/**
@@ -85,16 +87,31 @@ public class agregar extends JFrame implements Funciones {
 	public void mostrar_agregar(int tipo) {
 		if (tipo==0){
 			this.lbldato.setText("Ingrese el nombre del autor");
+			this.actual=0;
 		}
 		if (tipo==1){
 			this.lbldato.setText("Ingrese el genero");
+			this.actual=1;
 		}
 		if (tipo==2){
+			this.actual=2;
 			this.lbldato.setText("Ingrese el tipo");
 		}
 		opcion=tipo;
 		frame.setVisible(true);
 		
+		
+	}
+	@Override
+	public void llenar(ArrayList<String> g, ArrayList<String> t,
+			ArrayList<String> e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void cerrar_vista(int tipo) {
+		this.lbldato.setText(" ");
+		frame.setVisible(true);
 		
 	}
 }

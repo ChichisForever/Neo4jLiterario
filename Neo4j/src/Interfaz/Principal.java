@@ -5,10 +5,8 @@ import java.awt.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import javax.swing.JTabbedPane;
 import javax.swing.JDesktopPane;
-
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -16,6 +14,7 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 import javax.swing.UIManager;
 import javax.swing.ImageIcon;
@@ -39,6 +38,7 @@ public class Principal extends JFrame implements Funciones {
     public JComboBox cboxtipoc;
     public JButton btnBuscar;
     public JTextField txtagregarnombre;
+    public JButton btnAutor;
 
 
 
@@ -64,7 +64,7 @@ public class Principal extends JFrame implements Funciones {
 		this.btngenroNoEncontrado.addActionListener(control);
 		this.btntipoNoEncontrado.addActionListener(control);
 		this.btnBuscar.addActionListener(control);
-		
+		this.btnAutor.addActionListener(control);
 	}
 
 
@@ -81,6 +81,7 @@ public class Principal extends JFrame implements Funciones {
         frmInicio.getContentPane().setLayout(null);
         frmInicio.setVisible(true);
         frmInicio.setBounds(30, 30, 638,332 );
+        frmInicio.setVisible(false);
 
         JPanel panel = new JPanel();
         panel.setBounds(0, 0, 622, 306);
@@ -149,6 +150,10 @@ public class Principal extends JFrame implements Funciones {
         cboxautor = new JComboBox();
         cboxautor.setBounds(86, 72, 184, 20);
         panel_agregar.add(cboxautor);
+        
+        btnAutor = new JButton("\u00BFAutor no encontrado");
+        btnAutor.setBounds(306, 72, 206, 23);
+        panel_agregar.add(btnAutor);
 
         JPanel panel_consulta = new JPanel();
         panel_consulta.setBackground(new Color(0, 204, 255));
@@ -209,6 +214,41 @@ public class Principal extends JFrame implements Funciones {
 
 	@Override
 	public void mostrar_agregar(int tipo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void llenar(ArrayList<String> g, ArrayList<String> t,
+			ArrayList<String> e) {
+	//	vaciar_Combobox();
+		this.cboxgenero.addItem("Seleccione uno");
+		this.cboxgeneroc.addItem("Seleccione uno");
+		this.cboxtipo.addItem("Seleccione uno");
+		this.cboxtipoc.addItem("Seleccione uno");
+		this.cboxautor.addItem("Seleccione uno");
+		this.cboxautorc.addItem("Seleccione uno");
+		for (String x:g){
+			this.cboxgenero.addItem(x);
+			this.cboxgeneroc.addItem(x);
+		}
+		for (String x:t){
+			this.cboxtipo.addItem(x);
+			this.cboxtipoc.addItem(x);
+		}
+		for (String x:e){
+			this.cboxautor.addItem(x);
+			this.cboxautorc.addItem(x);
+		}
+		this.frmInicio.setVisible(true);
+	}
+
+	public void vaciar_Combobox(){
+		this.cboxautor.removeAll();
+	}
+	@Override
+	public void cerrar_vista(int tipo) {
 		// TODO Auto-generated method stub
 		
 	}

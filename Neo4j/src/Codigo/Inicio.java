@@ -7,11 +7,18 @@ public class Inicio {
 		Controlador control= new Controlador(m);
 		m.limpiar();
 		
+		Wait wait = new Wait(control);
+		m.addContactView(wait);
+		
 		Principal principal = new Principal(control);
 		m.addContactView(principal);
 		
 		agregar agregar = new agregar(control);
 		m.addContactView(agregar);
+		
+		
+		
+		m.llenar_combobox();
 		
 		
 	}
