@@ -34,12 +34,11 @@ public class Modelo {
 	//Llama la base para inicializar los combobox
 	public void llenar_combobox(){
 		ArrayList <String> genero = b.consultas_Simples("match (g:GeneroLiterario) return g.nombre");
-		ArrayList <String> tipo=b.consultas_Simples("match (g:Clase) return g.nombre");
 		ArrayList <String> autor=b.consultas_Simples("match (g:Escritor) return g.nombre");
 		
 		Iterator<Funciones> notificar = vistas.iterator();
 		while (notificar.hasNext()){
-			notificar.next().llenar(genero, tipo, autor);
+			notificar.next().llenar(genero, autor);
 		}
 		
 		
@@ -55,8 +54,8 @@ public class Modelo {
 		}
 	}
 	
-	public void CrearObra(String nombre,String autorc,String generoc,String tipoc){
-		b.CrearObra(nombre, autorc, generoc, tipoc);
+	public void CrearObra(String nombre,String autorc,String generoc){
+		b.CrearObra(nombre, autorc, generoc);
 		
 	}
 	public void agregar(int  tipo,String dato){
@@ -64,4 +63,45 @@ public class Modelo {
 		llenar_combobox();
 		
 	}
-}
+	public void Consultas(String A,String G,String O){
+		//Realiza la consulta segun sean los datos
+		ArrayList<Nodos> obras= new ArrayList<Nodos>();
+		System.out.print(A+G+O);
+		String consulta=" ";
+		if (A==null && G==null && O==null){
+			consulta= "match (E)-[:Escribio]-(O)-[:es_una]-(G) return E.nombre,O.nombre,G.nombre";
+		}
+		if (A==null && G!=null && O!=null){
+			consulta=" match (E)-[:Escribio]-(O{nombre:\""+O+"\"})-[:es_una]-(G{nombre:\""+G+"\"}) return E.nombre,O.nombre,G.nombre";
+		}
+		if (A!=null && G==null && O!=null){
+			consulta= " match (E{nombre:\""+A+"\"})-[:Escribio]-(O{nombre:\""+O+"\"})-[:es_una]-(G) return E.nombre,O.nombre,G.nombre" ;
+		}
+		if (A!=null && G!=null && O==null){
+			consulta=" match (E{nombre:\""+A+"\"})-[:Escribio]-(O)-[:es_una]-(G{nombre:\""+G+"\"}) return E.nombre,O.nombre,G.nombre";
+		}
+		if (A!=null && G==null && O==null){
+			consulta= "match (E{nombre:\""+A+"\"})-(O)-[:es_una]-(G) return E.nombre,O.nombre,G.nombre";
+		}
+		if (A==null && G!=null && O==null){
+			consulta=" match (E)-[:Escribio]-(O)-[:es_una]-(G{nombre:\""+G+"\"}) return E.nombre,O.nombre,G.nombre";
+		}
+		if (A==null && G==null && O!=null){
+			consulta="match (E)-[:Escribio]-(O{nombre:\""+O+"\"})-[:es_una]-(G) return E.nombre,O.nombre,G.nombre";
+		}
+		if (A!=null && G!=null && O!=null){
+			consulta=" match (E{nombre:\""+A+"\"})-[:Escribio]-(O{nombre:\""+O+"\"})-[:es_una]-(G{nombre:\""+G+"\"}) return E.nombre,O.nombre,G.nombre";
+		}
+		
+		obras = b.Consultas(consulta);
+		Iterator<Funciones> notificar = vistas.iterator();
+		while (notificar.hasNext()){
+			notificar.next().llenar_tabla(obras);	
+		}
+		
+		}
+		
+	}
+	
+	
+

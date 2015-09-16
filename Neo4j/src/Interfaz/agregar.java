@@ -15,6 +15,7 @@ import javax.swing.UIManager;
 
 import Codigo.Controlador;
 import Codigo.Funciones;
+import Codigo.Nodos;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -103,7 +104,7 @@ public class agregar extends JFrame implements Funciones {
 		
 	}
 	@Override
-	public void llenar(ArrayList<String> g, ArrayList<String> t,
+	public void llenar(ArrayList<String> g,
 			ArrayList<String> e) {
 		// TODO Auto-generated method stub
 		
@@ -112,6 +113,11 @@ public class agregar extends JFrame implements Funciones {
 	public void cerrar_vista(int tipo) {
 		this.lbldato.setText(" ");
 		frame.setVisible(true);
+		
+	}
+	@Override
+	public void llenar_tabla(ArrayList<Nodos> N) {
+		// TODO Auto-generated method stub
 		
 	}
 }

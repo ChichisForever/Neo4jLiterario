@@ -1,9 +1,12 @@
 package Codigo;
+import java.util.ArrayList;
+
 import Interfaz.*;
 
 public class Inicio {
 	public static void main (String [] args){
 		Modelo m = new Modelo();
+		
 		Controlador control= new Controlador(m);
 		m.limpiar();
 		
@@ -21,5 +24,7 @@ public class Inicio {
 		m.llenar_combobox();
 		
 		
-	}
 }
+		}
+	
+

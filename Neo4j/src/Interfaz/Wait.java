@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 
 import Codigo.Controlador;
 import Codigo.Funciones;
+import Codigo.Nodos;
 
 import java.awt.GridBagLayout;
 import java.util.ArrayList;
@@ -57,13 +58,18 @@ public class Wait extends JFrame implements Funciones {
 		
 	}
 	@Override
-	public void llenar(ArrayList<String> g, ArrayList<String> t,
+	public void llenar(ArrayList<String> g,
 			ArrayList<String> e) {
 		frame.setVisible(false);
 		
 	}
 	@Override
 	public void cerrar_vista(int tipo) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void llenar_tabla(ArrayList<Nodos> N) {
 		// TODO Auto-generated method stub
 		
 	}

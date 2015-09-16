@@ -21,17 +21,33 @@ public class Controlador implements ActionListener {
 		// TODO Auto-generated method stub
 		Object source = evt.getSource();
 		if (source==princ.btnAgregar){
-			modelo.CrearObra(princ.txtagregarnombre.getText(), (String)princ.cboxautor.getSelectedItem(),(String) princ.cboxgenero.getSelectedItem(),(String)princ.cboxtipo.getSelectedItem());
+			modelo.CrearObra(princ.txtagregarnombre.getText(), (String)princ.cboxautor.getSelectedItem(),(String) princ.cboxgenero.getSelectedItem());
 		}
 		if (source==princ.btnBuscar){
-			System.out.print("#perreacomolaica");
+			princ.lblmensaje.setText("Procesando su consulta");
+			String A=null;
+			String G=null;
+			String O=null;
+			
+			if (princ.cboxautorc.getSelectedIndex()!= 0){
+				A= (String)princ.cboxautorc.getSelectedItem();
+				
+			}
+			if (princ.cboxgeneroc.getSelectedIndex()!=0){
+				G=(String)princ.cboxgeneroc.getSelectedItem();
+			}
+			
+			if (princ.txtconnombre.getText()== null){
+				O=princ.txtconnombre.getText();
+			}
+			
+			modelo.Consultas(A, G, O);
+	
 		}
 		if (source==princ.btngenroNoEncontrado){
 			modelo.llamar_Ventana(1);
 		}
-		if (source==princ.btntipoNoEncontrado){
-			modelo.llamar_Ventana(2);
-		}
+
 		if (source==princ.btnAutor){
 			modelo.llamar_Ventana(0);
 		}

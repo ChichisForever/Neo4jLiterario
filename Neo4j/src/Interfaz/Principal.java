@@ -5,6 +5,8 @@ import java.awt.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTabbedPane;
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
@@ -21,6 +23,10 @@ import javax.swing.ImageIcon;
 
 import Codigo.Controlador;
 import Codigo.Funciones;
+import Codigo.Nodos;
+
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
 
 public class Principal extends JFrame implements Funciones {
 
@@ -29,16 +35,17 @@ public class Principal extends JFrame implements Funciones {
     public JFrame frmInicio;
     public JComboBox cboxautor;
     public JComboBox cboxgenero;
-    public JComboBox cboxtipo;
     public JButton btnAgregar;
-    public JButton btntipoNoEncontrado;
     public JButton btngenroNoEncontrado;
     public JComboBox cboxautorc;
     public JComboBox cboxgeneroc;
-    public JComboBox cboxtipoc;
     public JButton btnBuscar;
     public JTextField txtagregarnombre;
     public JButton btnAutor;
+    public JTextField txtconnombre;
+    private JPanel panel_consulta;
+    public JLabel lblmensaje;
+    private JTable table;
 
 
 
@@ -62,7 +69,6 @@ public class Principal extends JFrame implements Funciones {
     private void addevents() {
 		this.btnAgregar.addActionListener(control);
 		this.btngenroNoEncontrado.addActionListener(control);
-		this.btntipoNoEncontrado.addActionListener(control);
 		this.btnBuscar.addActionListener(control);
 		this.btnAutor.addActionListener(control);
 	}
@@ -80,16 +86,16 @@ public class Principal extends JFrame implements Funciones {
         frmInicio.getContentPane().setBackground(new Color(255, 255, 255));
         frmInicio.getContentPane().setLayout(null);
         frmInicio.setVisible(true);
-        frmInicio.setBounds(30, 30, 638,332 );
+        frmInicio.setBounds(30, 30, 800,332 );
         frmInicio.setVisible(false);
 
         JPanel panel = new JPanel();
-        panel.setBounds(0, 0, 622, 306);
+        panel.setBounds(0, 0, 784, 306);
         frmInicio.getContentPane().add(panel);
         panel.setLayout(null);
 
         JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-        tabbedPane.setBounds(6, 6, 607, 289);
+        tabbedPane.setBounds(6, 6, 778, 289);
         panel.add(tabbedPane);
 
 
@@ -123,10 +129,6 @@ public class Principal extends JFrame implements Funciones {
         lblTipo.setBounds(10, 171, 46, 14);
         panel_agregar.add(lblTipo);
 
-        cboxtipo = new JComboBox();
-        cboxtipo.setBounds(86, 168, 184, 20);
-        panel_agregar.add(cboxtipo);
-
         btnAgregar = new JButton("Agregar");
         btnAgregar.setBounds(218, 229, 89, 23);
         panel_agregar.add(btnAgregar);
@@ -134,14 +136,6 @@ public class Principal extends JFrame implements Funciones {
         btngenroNoEncontrado = new JButton("\u00BFGen\u00E9ro no encontrado");
         btngenroNoEncontrado.setBounds(306, 116, 206, 23);
         panel_agregar.add(btngenroNoEncontrado);
-
-        btntipoNoEncontrado = new JButton("\u00BFTipo no encontrado");
-        btntipoNoEncontrado.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-            }
-        });
-        btntipoNoEncontrado.setBounds(306, 167, 206, 23);
-        panel_agregar.add(btntipoNoEncontrado);
 
         JLabel lblAutor = new JLabel("Autor");
         lblAutor.setBounds(10, 81, 46, 14);
@@ -155,7 +149,7 @@ public class Principal extends JFrame implements Funciones {
         btnAutor.setBounds(306, 72, 206, 23);
         panel_agregar.add(btnAutor);
 
-        JPanel panel_consulta = new JPanel();
+        panel_consulta = new JPanel();
         panel_consulta.setBackground(new Color(0, 204, 255));
         tabbedPane.addTab("Consulta de Obras", null, panel_consulta, null);
         panel_consulta.setLayout(null);
@@ -180,35 +174,45 @@ public class Principal extends JFrame implements Funciones {
         label_3.setBounds(20, 136, 46, 14);
         panel_consulta.add(label_3);
 
-        JLabel label_4 = new JLabel("Tipo");
-        label_4.setBounds(20, 187, 46, 14);
-        panel_consulta.add(label_4);
-
         cboxgeneroc = new JComboBox();
         cboxgeneroc.setBounds(98, 133, 186, 20);
         panel_consulta.add(cboxgeneroc);
-
-        cboxtipoc = new JComboBox();
-        cboxtipoc.setBounds(98, 184, 186, 20);
-        panel_consulta.add(cboxtipoc);
 
         cboxautorc = new JComboBox();
         cboxautorc.setBounds(98, 94, 186, 20);
         panel_consulta.add(cboxautorc);
 
-        JTextField txtconnombre = new JTextField();
-        txtconnombre.setBounds(95, 55, 189, 20);
+        txtconnombre = new JTextField();
+        txtconnombre.setBounds(95, 55, 189, 28);
         panel_consulta.add(txtconnombre);
         txtconnombre.setColumns(10);
 
         btnBuscar = new JButton("Buscar");
-        btnBuscar.setBounds(230, 227, 89, 23);
+        btnBuscar.setBounds(237, 178, 89, 23);
         panel_consulta.add(btnBuscar);
 
         JLabel lblNewLabel = new JLabel("");
         lblNewLabel.setIcon(new ImageIcon(Principal.class.getResource("/Interfaz/Imagen1.png")));
         lblNewLabel.setBounds(365, 148, 121, 118);
         panel_consulta.add(lblNewLabel);
+        
+        lblmensaje = new JLabel("");
+        lblmensaje.setBounds(10, 231, 345, 14);
+        panel_consulta.add(lblmensaje);
+        
+        JPanel panel_1 = new JPanel();
+        panel_1.setBackground(new Color(0, 204, 255));
+        panel_1.setBounds(496, 41, 267, 183);
+        panel_consulta.add(panel_1);
+        
+        JScrollPane scrollPane = new JScrollPane();
+        panel_1.add(scrollPane);
+        
+        table = new JTable();
+        scrollPane.add(table);
+        
+       
+        
     }
 
 
@@ -220,36 +224,59 @@ public class Principal extends JFrame implements Funciones {
 
 
 	@Override
-	public void llenar(ArrayList<String> g, ArrayList<String> t,
+	public void llenar(ArrayList<String> g, 
 			ArrayList<String> e) {
 	//	vaciar_Combobox();
-		this.cboxgenero.addItem("Seleccione uno");
-		this.cboxgeneroc.addItem("Seleccione uno");
-		this.cboxtipo.addItem("Seleccione uno");
-		this.cboxtipoc.addItem("Seleccione uno");
-		this.cboxautor.addItem("Seleccione uno");
-		this.cboxautorc.addItem("Seleccione uno");
+		vaciar_Combobox();
+		DefaultComboBoxModel genero = new DefaultComboBoxModel();
+		genero.addElement("Seleccione uno");
+		DefaultComboBoxModel autor = new DefaultComboBoxModel();
+		autor.addElement("Seleccione uno");
+		
+		
 		for (String x:g){
-			this.cboxgenero.addItem(x);
-			this.cboxgeneroc.addItem(x);
+			genero.addElement(x);
 		}
-		for (String x:t){
-			this.cboxtipo.addItem(x);
-			this.cboxtipoc.addItem(x);
-		}
+		
 		for (String x:e){
-			this.cboxautor.addItem(x);
-			this.cboxautorc.addItem(x);
+			autor.addElement(x);
+			
 		}
+		this.cboxautor.setModel(autor);
+		this.cboxautorc.setModel(autor);
+		this.cboxgenero.setModel(genero);
+		this.cboxgeneroc.setModel(genero);
 		this.frmInicio.setVisible(true);
 	}
 
 	public void vaciar_Combobox(){
+		this.cboxgenero.removeAllItems();
+		this.cboxgeneroc.removeAllItems();
 		this.cboxautor.removeAll();
+		this.cboxautorc.removeAll();
 	}
 	@Override
 	public void cerrar_vista(int tipo) {
 		// TODO Auto-generated method stub
 		
 	}
-}
+
+
+	@Override
+	public void llenar_tabla(ArrayList<Nodos> N) {
+		 DefaultTableModel model = new DefaultTableModel();
+		 model.addColumn("Autor");
+		 model.addColumn("Obra");
+		 model.addColumn("Genero Literario");
+		 
+		 for (Nodos x:N){
+			 model.addRow(new Object[]{x.Actor,x.Obra,x.GeneroLiterario});
+			 
+		 }
+		 table.setModel(model);
+		 table.setVisible(true);
+		 this.lblmensaje.setText("Consulta Terminada");
+		 
+		 }
+	}
+
